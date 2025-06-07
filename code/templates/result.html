@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card main-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">{{ t('result_title') }}</h2>
+                    
+                    <div class="video-container mb-4">
+                        <video id="resultVideo" controls class="w-100">
+                            <source src="{{ video_url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <a href="{{ video_url }}" download class="btn btn-success mb-2">
+                            <i class="fas fa-download me-2"></i> {{ t('download_button') }}
+                        </a>
+                        
+                        <a href="{{ url_for('reset') }}" class="btn btn-primary mb-2">
+                            <i class="fas fa-plus me-2"></i> {{ t('create_new') }}
+                        </a>
+                    </div>
+                    
+                    <div class="share-options mt-4">
+                        <h5 class="text-center mb-3">Share your video</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button class="btn btn-outline-primary share-btn">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button class="btn btn-outline-primary share-btn">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="btn btn-outline-primary share-btn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                            <button class="btn btn-outline-primary share-btn" id="copyLinkBtn">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy link functionality
+        document.getElementById('copyLinkBtn').addEventListener('click', function() {
+            const videoUrl = window.location.origin + '{{ video_url }}';
+            navigator.clipboard.writeText(videoUrl).then(() => {
+                alert('Video link copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        });
+        
+        // Autoplay video once
+        const video = document.getElementById('resultVideo');
+        video.addEventListener('loadeddata', function() {
+            video.play().catch(e => {
+                console.log('Autoplay prevented: ', e);
+            });
+        });
+        
+        // Share buttons (would implement actual sharing in production)
+        const shareBtns = document.querySelectorAll('.share-btn');
+        shareBtns.forEach(btn => {
+            if (btn.id !== 'copyLinkBtn') {
+                btn.addEventListener('click', function() {
+                    alert('Social media sharing would be implemented in production');
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

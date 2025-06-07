@@ -1,0 +1,38 @@
+<header class="app-header">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+        <div class="brand d-flex align-items-center">
+            <div class="logo-container me-3">
+                <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="AdVideoGen Logo" class="logo">
+            </div>
+            <div>
+                <h1 class="m-0 app-title">{{ t('title') }}</h1>
+                <p class="m-0 tagline">{{ t('description') }}</p>
+            </div>
+        </div>
+        
+        <div class="language-selector">
+            <div class="lang-dropdown">
+                <button class="lang-btn">
+                    <span class="lang-icon">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                    <span class="current-lang">
+                        {% if current_lang == 'en' %}EN{% elif current_lang == 'fr' %}FR{% else %}عربي{% endif %}
+                    </span>
+                    <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+                <div class="lang-dropdown-content">
+                    <a href="{{ url_for('set_language', lang='en') }}" class="lang-option {% if current_lang == 'en' %}active{% endif %}">
+                        <span class="lang-flag">🇬🇧</span> English
+                    </a>
+                    <a href="{{ url_for('set_language', lang='fr') }}" class="lang-option {% if current_lang == 'fr' %}active{% endif %}">
+                        <span class="lang-flag">🇫🇷</span> Français
+                    </a>
+                    <a href="{{ url_for('set_language', lang='ar') }}" class="lang-option {% if current_lang == 'ar' %}active{% endif %}">
+                        <span class="lang-flag">🇸🇦</span> العربية
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

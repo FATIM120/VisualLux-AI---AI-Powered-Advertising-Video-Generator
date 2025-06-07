@@ -1,0 +1,35 @@
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h5>{{ t('chat_title') }}</h5>
+            <button class="btn-close" id="chatbotClose"></button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>Hello! I can help you with creating advertising videos. Ask me anything about your project!</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input-container">
+            <div class="chatbot-attachments" id="chatbotAttachments">
+                <button class="chatbot-attach-btn" id="chatbotAttachBtn">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <input type="file" id="chatbotImageUpload" accept="image/*" style="display: none;">
+                <div class="chatbot-preview" id="chatbotPreview"></div>
+            </div>
+            <div class="chatbot-input-group">
+                <input type="text" id="chatbotInput" class="chatbot-input" placeholder="{{ t('chat_placeholder') }}">
+                <button id="chatbotSend" class="chatbot-send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>

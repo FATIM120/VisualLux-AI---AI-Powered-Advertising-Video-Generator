@@ -1,0 +1,15 @@
+# Ignorer l'environnement virtuel
+venv/
+*.venv/
+
+# Ignorer les fichiers temporaires LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+*.bak
+
+# Ignorer les caches Python
+__pycache__/
+*.pyc
