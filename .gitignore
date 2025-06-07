@@ -7,7 +7,6 @@ venv/
 *.log
 *.out
 *.toc
-*.pdf
 *.bak
 
 # Ignorer les caches Python
